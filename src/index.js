@@ -12,7 +12,6 @@ import {
   ApolloClient,
   ApolloProvider,
   createHttpLink,
-  gql,
   InMemoryCache,
 } from '@apollo/client';
 
@@ -26,25 +25,6 @@ const client = new ApolloClient({
   link: httpLink,
   cache,
 });
-
-client
-  .query({
-    query: gql`
-      {
-        getCollectionsByTitle(title: "hats") {
-          id
-          title
-          items {
-            id
-            name
-            price
-            imageUrl
-          }
-        }
-      }
-    `,
-  })
-  .then((res) => console.log('res', res));
 
 ReactDOM.render(
   <ApolloProvider client={client}>
